@@ -8,7 +8,7 @@ class BetterMifloraCard extends HTMLElement {
         this.sensors = {
             moisture: 'hass:water',
             temperature: 'hass:thermometer',
-            intensity: 'hass:white-balance-sunny',
+            illuminance: 'hass:white-balance-sunny',
             conductivity: 'hass:emoticon-poop',
             battery: 'hass:battery'
         };
@@ -78,6 +78,7 @@ class BetterMifloraCard extends HTMLElement {
             var _icon = this._computeIcon(_name, _state);
             var _alertStyle = '';
             var _alertIcon = '';
+            let moistureInfo = '';
             if (_name == 'moisture') {
                 if (_state > _maxMoisture) {
                     _alertStyle = ';color:red';
@@ -85,6 +86,10 @@ class BetterMifloraCard extends HTMLElement {
                 } else if (_state < _minMoisture) {
                     _alertStyle = ';color:red';
                     _alertIcon = '&#9660; '
+                }
+
+                if (_minMoisture && _maxMoisture) {
+                    moistureInfo = ` (${_minMoisture}% - ${_maxMoisture}%)`
                 }
             }
             if (_name == 'conductivity') {
@@ -102,7 +107,7 @@ class BetterMifloraCard extends HTMLElement {
             this.shadowRoot.getElementById('sensors').innerHTML += `
                 <div id="sensor${i}" class="sensor">
                     <div class="icon"><ha-icon icon="${_icon}"></ha-icon></div>
-                    <div class="name">${_display_name[0].toUpperCase()}${_display_name.slice(1)}</div>
+                    <div class="name">${_display_name[0].toUpperCase()}${_display_name.slice(1)}${moistureInfo}</div>
                     <div class="state" style="${_alertStyle}">${_alertIcon}${_state}${_uom}</div>
                 </div>
                 `

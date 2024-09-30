@@ -45,8 +45,8 @@ min_temperature: 12
 entities:
 - entity: sensor.miflora_1_moisture
   type: moisture
-- entity: sensor.miflora_1_light_intensity
-  type: intensity
+- entity: sensor.miflora_1_illuminance
+  type: illuminance
 - entity: sensor.miflora_1_temperature
   type: temperature
 - entity: sensor.miflora_1_conductivity
