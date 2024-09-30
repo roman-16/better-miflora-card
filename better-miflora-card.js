@@ -1,5 +1,4 @@
-console.info("%c  MIFLORA-CARD  \n%c Version 0.1.2 ", "color: orange; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");
-class MifloraCard extends HTMLElement {
+class BetterMifloraCard extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({
@@ -13,7 +12,6 @@ class MifloraCard extends HTMLElement {
             conductivity: 'hass:emoticon-poop',
             battery: 'hass:battery'
         };
-
     }
 
     _computeIcon(sensor, state) {
@@ -181,7 +179,7 @@ class MifloraCard extends HTMLElement {
             }
             `;
         plantimage.innerHTML = `
-            <img class="image" src=/local/${config.image}>  
+            <img class="image" src=/local/${config.image}>
             `;
 
         content.id = "container";
@@ -192,11 +190,9 @@ class MifloraCard extends HTMLElement {
         root.appendChild(card);
     }
 
-    // The height of your card. Home Assistant uses this to automatically
-    // distribute all cards over the available columns.
     getCardSize() {
         return 2;
     }
 }
 
-customElements.define('miflora-card', MifloraCard);
+customElements.define('better-miflora-card', BetterMifloraCard);
